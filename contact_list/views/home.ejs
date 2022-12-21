@@ -2,25 +2,45 @@
 
 <head>
     <title>
-        <%= title %>
+        <%= locals.title %>
     </title>
+    <script src="https://kit.fontawesome.com/5132a4907b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 
 <body>
-    <h1>Contact List!</h1>
-    <ul>
-        <% for(let i of contact_List){%>
-            <li>
-                <p><%= i.name %></p>
-                <p><%= i.phone %></p>
-            </li>
-        <%}%>
-    </ul>
-    <form action="/create-contact" method="POST">
+    <h1 id="page-heading">
+        <i class="fa-solid fa-address-book"></i>
+        My Contacts List
+    </h1>
+    <div id="contact-list-container">
+        <ul>
+            <% for(let i of contact_List){%>
+                <li class="contact">
+                    <div class="details">
+                        <p>
+                            <%= i.name %>
+                        </p>
+                        <p>
+                            <%= i.phone %>
+                        </p>
+                    </div>
+                    <div class="delete-button">
+                        <a href="/delete-contact/?phone=<%= i.phone%>">
+                            <i class="fa-solid fa-square-xmark"></i>
+                        </a>
+                    </div>
+                </li>
+                <%}%>
+        </ul>
+    </div>
+    <form id="new-contact-form" action="/create-contact" method="POST">
         <input type="text" name="name" placeholder="Enter name" required>
         <input type="phone" name="phone" placeholder="Enter phone" required>
-        <button type="submit">Add contact</button>
+        <button type="submit">Add</button>
     </form>
+
+    <script type="text/javascript" src="assets/js/home.js"></script>
 
 </body>
 
